@@ -1,84 +1,73 @@
 #include <stdio.h>
 
-// Desafio de Xadrez - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
-// O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
+int main(){
 
-    // Nível Novato - Movimentação das Peças
-    // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
+    //array que representa as colunas do tabbuleiro ('a' a 'h')
+    char *colunas [] = {"a","b","c","d","e","f","g","h",}; 
+    //array de nomes das peças (apenas para exibição)
+    char *pecas []= {"bispo", "rainha", "torre"};
 
-    // Implementação de Movimentação do Bispo
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação do Bispo em diagonal.
+    //mensagens iniciais
+    printf("*** Bem-vindo ao jogo de xadrez ***\n");
+    printf("Peças disponíveis: Torre, Rainha e Bispo\n");
 
-    // Implementação de Movimentação da Torre
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Torre para a direita.
+    //-------------------------------------------------------------
+    //Movimentação da Torre (Usando laço for)
+    //Ela começa em a1
+    int torre_col = 0; //posição inicial
+    int torre_row = 1; //linha fixa
 
-    // Implementação de Movimentação da Rainha
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Rainha para a esquerda.
+    printf("Movimentação da torre (5 casas para a direita):\n");
 
-    //usando um array para simular as linhas
-    #include <stdio.h>
+    for (int movimento = 1; movimento <= 5; movimento++ ){
 
-    int main(void) {
-        int linha = 1; // A linha permanece fixa em 1
-    
-        // Array de ponteiros para as peças disponíveis
-        char *pecas[] = {"bispo", "rainha", "torre"};
-    
-        // Array de colunas do tabuleiro (da coluna "a" até "h")
-        char *colunas[] = {"a", "b", "c", "d", "e", "f", "g", "h"};
-    
-        printf("*** Bem-vindo ao jogo de xadrez! ***\n");
-        printf("Só tem o bispo, a rainha e a torre\n");
-        printf("A torre se encontra na posição %s%d do tabuleiro\n\n", colunas[0], linha);
-    
-        // Simula o movimento horizontal da torre: cinco movimentos para a direita
-        // Começamos na coluna "a" (índice 0) e, em cada iteração, avançamos para a próxima coluna.
-        for (int movimento = 1; movimento <= 5; movimento++) {
-            // Em cada movimento, imprimimos a nova posição da torre:
-            // A torre (pecas[2]) se move para a coluna colunas[movimento] na linha fixa.
-            printf("Movimento %d: A %s foi para %s%d\n", movimento, pecas[2], colunas[movimento], linha);
+        int nova_col = torre_col + movimento; //nova coluna é calculada 
+
+        //verifica se a nova coluna está dentro dos índices do tabuleiro
+        if (nova_col > 7){
+            printf("\nMovimento %d não pode ser executado pela torre\n", movimento);
+            break;
         }
-    
-        return 0;
+
+        printf("\nMovimento %d: Torre foi de %s%d para %s%d", movimento, colunas[torre_col], torre_row, colunas[nova_col], torre_row);
+        //No momento, ficará aparecendo sempre "Torre foi de 'a1' para...". Pra mudar isso precisa de loops aninhadas (eu acho)
     }
+        //--------------------------------------------------------------------------------------------------------------------------------
+
+        //A rainha começa em h5
+
+        int rainha_col = 7;
+        int rainha_row = 5;
+
+        printf("\n A movimentação da rainha será 8 casas para a direita!\n");
+        int mov_count = 0;
     
+        
+        while (mov_count < 8){
 
-    
+            int nova_col = rainha_col - 1;
+            //verificando os limites              
+            if (nova_col < 0){
+                printf("\nMovimento inválido! Rainha não pode sair do limie do tabuleiro!\n");
+                break;
+            }
 
-    
+            printf("\nMovimento %d: A rainha foi de %s%d para %s%d\n", mov_count + 1, colunas[rainha_col], rainha_row, colunas[nova_col], rainha_row);
+            //atualiza a posição para o próximo movimento
+            rainha_col = nova_col;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+            mov_count++;
+        }
 
 
 
-
+    }
 
 
 
 
 
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
 
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
 
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
 
     
