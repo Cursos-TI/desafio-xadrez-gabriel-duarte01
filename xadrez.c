@@ -17,11 +17,11 @@ int main(){
     int torre_col = 0; //posição inicial
     int torre_row = 1; //linha fixa
 
-    printf("Movimentação da torre (5 casas para a direita):\n");
+    printf("* Movimentação da torre (5 casas para a direita): *\n");
 
-    for (int movimento = 1; movimento <= 5; movimento++ ){
+    for (int movimento = 0; movimento <= 4; movimento++ ){
 
-        int nova_col = torre_col + movimento; //nova coluna é calculada 
+        int nova_col = torre_col + 1; //nova coluna é calculada 
         
         //verifica se a nova coluna está dentro dos índices do tabuleiro
         if (nova_col > 7){
@@ -29,8 +29,8 @@ int main(){
             break;
         }
 
-        printf("\nMovimento %d: Torre foi de %s%d para %s%d", movimento, colunas[torre_col], torre_row, colunas[nova_col], torre_row);
-       
+        printf("\nMovimento %d: Torre foi de %s%d para %s%d", movimento + 1, colunas[torre_col], torre_row, colunas[nova_col], torre_row);
+        torre_col = nova_col;
         //No momento, ficará aparecendo sempre "Torre foi de 'a1' para...". Pra mudar isso precisa de loops aninhadas (eu acho)
     }
         //--------------------------------------------------------------------------------------------------------------------------------
@@ -40,16 +40,16 @@ int main(){
         int rainha_col = 7;
         int rainha_row = 5;
 
-        printf("\n A movimentação da rainha será 8 casas para a direita!\n");
+        printf("\n\n * A movimentação da rainha será 8 casas para a esquerda! *\n");
         int mov_count = 0;
     
         
-        while (mov_count < 8){
+        while (mov_count <= 6){
 
             int nova_col = rainha_col - 1;
             //verificando os limites              
             if (nova_col < 0){
-                printf("\nMovimento inválido! Rainha não pode sair do limite do tabuleiro!\n");
+                printf("Movimento inválido! Rainha não pode sair do limite do tabuleiro!\n");
                 break;
             }
 
@@ -70,7 +70,7 @@ int main(){
         int bispo_row = 1;
         int movBispo = 0;
 
-        printf("Bispo está em c1 e se moverá na diagonal!\n");
+        printf("\n* Bispo está em c1 e se moverá na diagonal! *\n");
 
         
         do{
