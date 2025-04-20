@@ -31,7 +31,7 @@ int main(){
 
         printf("\nMovimento %d: Torre foi de %s%d para %s%d", movimento + 1, colunas[torre_col], torre_row, colunas[nova_col], torre_row);
         torre_col = nova_col;
-        //No momento, ficará aparecendo sempre "Torre foi de 'a1' para...". Pra mudar isso precisa de loops aninhadas (eu acho)
+        
     }
         //--------------------------------------------------------------------------------------------------------------------------------
 
