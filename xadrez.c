@@ -5,11 +5,11 @@ int main(){
     //array que representa as colunas do tabbuleiro ('a' a 'h')
     char *colunas [] = {"a","b","c","d","e","f","g","h",}; 
     //array de nomes das peças (apenas para exibição)
-    char *pecas []= {"bispo", "rainha", "torre"};
+    char *pecas []= {"bispo", "rainha", "torre", "cavalo"};
 
     //mensagens iniciais
     printf("*** Bem-vindo ao jogo de xadrez ***\n");
-    printf("Peças disponíveis: Torre, Rainha e Bispo\n");
+    printf("Peças disponíveis: Torre, Rainha, Bispo e Cavalo.\n");
 
     //-------------------------------------------------------------
     //Movimentação da Torre (Usando laço for)
@@ -91,6 +91,61 @@ int main(){
             movBispo++;
         }while(movBispo < 5);
         
+        //----------------------------------------------------------------------------------------------------------------------------------------
+        //Movimento do cavalo
+        //Ele está em f3
+        //Implementei o scanf para o cavalo
+
+        int escolhaJogador;
+
+        printf("\n* Agora veremos a movimentação do cavalo no tabuleiro *\n");
+        printf("Ele se encontra em f3\n");
+        printf("Você deverá escolher em qual posição ele ficará\n");
+        printf("Escolha entre e5 e g5\n");
+        printf("Para e5, digite 1. Para g5, digite 2!\n");
+        scanf("%d", &escolhaJogador);
+
+        //verifica se está correta a escolha
+        if (escolhaJogador < 1 || escolhaJogador >2){
+            printf("opção inválida!\n");
+            return 0;
+       }
+
+
+       //criei a logica
+       //movimentoCompleto é decrementado para encerrar o loop de forma simples.
+       // 1 = verdadeiro; 0 = falso
+       //variável foi pós-decrementada, então primeiro atribuiu 1 e depois decrementou
+       if(escolhaJogador == 1){
+        
+        int movimentoCavalo = 1;
+
+        while(movimentoCavalo--){
+
+            for(int i = 0; i < 2; i++){
+                printf("Cima\n");
+            }
+            printf("esquerda!\n");
+            printf("Você escolheu a opção 1!\n");
+            printf("O cavalo foi de f3 para e5!\n");
+        }
+
+       } else {
+        
+        int movimentoCavalo = 1;
+
+        while(movimentoCavalo--){
+
+            for(int i = 0; i < 2; i++){
+                printf("Cima\n");
+            }
+            printf("direita!\n");
+            printf("\n Você escolheu a opção 2!\n");
+            printf("O cavalo foi de f3 para g5!\n");
+       }
+    }
+
+
 
         return 0;
     }
