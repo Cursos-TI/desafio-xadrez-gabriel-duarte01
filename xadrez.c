@@ -12,8 +12,7 @@ char *colunas[] = {"a", "b", "c", "d", "e", "f", "g", "h"};
 //   nomePeca: nome da peça para exibição
 void moverPecas(int row, int col, int deltaRow, int deltaCol, int moves, char nomePeca){
 
-    if (moves <= 0){
-        return 0;
+    if (moves <= 0) return;
     
 
     int novaCol = col + deltaCol;
@@ -29,6 +28,7 @@ void moverPecas(int row, int col, int deltaRow, int deltaCol, int moves, char no
     
     moverPecas(novaRow, novaCol, deltaRow, deltaCol, moves - 1, nomePeca);
 }
+}
 
 int main(){
 
@@ -37,14 +37,14 @@ int main(){
 
 
     printf("Vamos ver a movimentação da torre. Ela está em a1\n");
-    moverPecas(1,0, 0, 1, 5, "Torre");
+    moverPecas(1, 0, 0, 1, 5, "Torre");
 
 
     printf("Vamos ver a movimentação da rainha. Ela está em h2\n");
-    moverPecas(2,7, 0, -1, 5, "Rainha");
+    moverPecas(2, 7, 0, -1, 5, "Rainha");
 
     printf("Vamos ver a movimentação da torre. Ela está em a3\n");
-    moverPecas(3,0, 1, 1, 5, "Bispo");
+    moverPecas(3, 0, 1, 1, 5, "Bispo");
 
     return 0;
 }
