@@ -1,154 +1,58 @@
+
 #include <stdio.h>
+
+// Arrays auxiliares para exibição
+char *colunas[] = {"a", "b", "c", "d", "e", "f", "g", "h"};
+
+// Função recursiva genérica para movimentos lineares
+// Parâmetros:
+//   row, col: posição atual da peça
+//   deltaRow, deltaCol: quanto a linha e coluna devem mudar a cada movimento
+//   moves: número de movimentos/casas restantes
+//   nomePeca: nome da peça para exibição
+void moverPecas(int row, int col, int deltaRow, int deltaCol, int moves, char nomePeca){
+
+    if (moves <= 0){
+        return 0;
+    
+
+    int novaCol = col + deltaCol;
+    int novaRow = row + deltaRow;
+
+    if (novaCol < 0 || novaCol > 7 || novaRow < 1 || novaRow > 8){
+
+        printf("Movimento inválido! Excedeu os limites do tabuleiro.");
+        return 0;
+    }
+
+    printf("%s move de %s%d para %s%d\n", nomePeca, colunas[col], row, colunas[novaCol], novaRow);
+    
+    moverPecas(novaRow, novaCol, deltaRow, deltaCol, moves - 1, nomePeca);
+}
 
 int main(){
 
-    //array que representa as colunas do tabbuleiro ('a' a 'h')
-    char *colunas [] = {"a","b","c","d","e","f","g","h",}; 
-    //array de nomes das peças (apenas para exibição)
-    char *pecas []= {"bispo", "rainha", "torre", "cavalo"};
-
-    //mensagens iniciais
-    printf("*** Bem-vindo ao jogo de xadrez ***\n");
-    printf("Peças disponíveis: Torre, Rainha, Bispo e Cavalo.\n");
-
-    //-------------------------------------------------------------
-    //Movimentação da Torre (Usando laço for)
-    //Ela começa em a1
-    int torre_col = 0; //posição inicial
-    int torre_row = 1; //linha fixa
-
-    printf("* Movimentação da torre (5 casas para a direita): *\n");
-
-    for (int movimento = 0; movimento <= 4; movimento++ ){
-
-        int nova_col = torre_col + 1; //nova coluna é calculada 
-        
-        //verifica se a nova coluna está dentro dos índices do tabuleiro
-        if (nova_col > 7){
-            printf("\nMovimento %d não pode ser executado pela torre\n", movimento);
-            break;
-        }
-
-        printf("\nMovimento %d: Torre foi de %s%d para %s%d", movimento + 1, colunas[torre_col], torre_row, colunas[nova_col], torre_row);
-        torre_col = nova_col;
-        
-    }
-        //--------------------------------------------------------------------------------------------------------------------------------
-
-        //A rainha começa em h5
-
-        int rainha_col = 7;
-        int rainha_row = 5;
-
-        printf("\n\n * A movimentação da rainha será 8 casas para a esquerda! *\n");
-        int mov_count = 0;
-    
-        
-        while (mov_count <= 6){
-
-            int nova_col = rainha_col - 1;
-            //verificando os limites              
-            if (nova_col < 0){
-                printf("Movimento inválido! Rainha não pode sair do limite do tabuleiro!\n");
-                break;
-            }
-
-            printf("Movimento %d: A rainha foi de %s%d para %s%d\n", mov_count + 1, colunas[rainha_col], rainha_row, colunas[nova_col], rainha_row);
-            //atualiza a posição para o próximo movimento
-            rainha_col = nova_col;
-
-            mov_count++;
-        }
-
-        //-------------------------------------------------------------------------------------------------------------------------------------------------------
-
-        //Movimento Bispo
-        //Ele está em c1
-        //Move-se-rá na diagonal para a direita (uma casa para a direita e uma para cima)
-
-        int bispo_col = 2;
-        int bispo_row = 1;
-        int movBispo = 0;
-
-        printf("\n* Bispo está em c1 e se moverá na diagonal! *\n");
-
-        
-        do{
-            
-        int  nova_col = bispo_col + 1;
-        int nova_row = bispo_row + 1;
-            
-        //verificar se está nos limites do tabuleiro   
-                if (nova_col > 7 || nova_row > 8){
-                printf("Movimento inválido! Excedeu os limites do tabuleiro.\n");
-              break;
-            }
-
-            printf("Movimento %d: O bispo foi de %s%d para %s%d\n", movBispo + 1, colunas[bispo_col], bispo_row, colunas[nova_col], nova_row);
-            bispo_col = nova_col;
-            bispo_row = nova_row;
-
-            movBispo++;
-        }while(movBispo < 5);
-        
-        //----------------------------------------------------------------------------------------------------------------------------------------
-        //Movimento do cavalo
-        //Ele está em f3
-        //Implementei o scanf para o cavalo
-
-        int escolhaJogador;
-
-        printf("\n* Agora veremos a movimentação do cavalo no tabuleiro *\n");
-        printf("Ele se encontra em f3\n");
-        printf("Você deverá escolher em qual posição ele ficará\n");
-        printf("Escolha entre e5 e g5\n");
-        printf("Para e5, digite 1. Para g5, digite 2!\n");
-        scanf("%d", &escolhaJogador);
-
-        //verifica se está correta a escolha
-        if (escolhaJogador < 1 || escolhaJogador >2){
-            printf("opção inválida!\n");
-            return 0;
-       }
+    printf("*** Bem-vindo ao jogo de xadrez! ***\n");
+    printf("Há apenas a torre, o bispo, a rainha e o cavalo.\n");
 
 
-       //criei a logica
-       //movimentoCompleto é decrementado para encerrar o loop de forma simples.
-       // 1 = verdadeiro; 0 = falso
-       //variável foi pós-decrementada, então primeiro atribuiu 1 e depois decrementou
-       if(escolhaJogador == 1){
-        
-        int movimentoCavalo = 1;
+    printf("Vamos ver a movimentação da torre. Ela está em a1\n");
+    moverPecas(1,0, 0, 1, 5, "Torre");
 
-        while(movimentoCavalo--){
 
-            for(int i = 0; i < 2; i++){
-                printf("Cima\n");
-            }
-            printf("esquerda!\n");
-            printf("Você escolheu a opção 1!\n");
-            printf("O cavalo foi de f3 para e5!\n");
-        }
+    printf("Vamos ver a movimentação da rainha. Ela está em h2\n");
+    moverPecas(2,7, 0, -1, 5, "Rainha");
 
-       } else {
-        
-        int movimentoCavalo = 1;
+    printf("Vamos ver a movimentação da torre. Ela está em a3\n");
+    moverPecas(3,0, 1, 1, 5, "Bispo");
 
-        while(movimentoCavalo--){
-
-            for(int i = 0; i < 2; i++){
-                printf("Cima\n");
-            }
-            printf("direita!\n");
-            printf("\n Você escolheu a opção 2!\n");
-            printf("O cavalo foi de f3 para g5!\n");
-       }
-    }
+    return 0;
+}
 
 
 
-        return 0;
-    }
+
+
 
 
 
